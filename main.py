@@ -23,10 +23,18 @@ def main() -> None:
 
     st.write( conference, "in ", seasons)
     
-    s = get_standings(seasons, conference)
-    print(s)
+    standings = get_standings(seasons, conference)
 
-    st.dataframe(s,height=560, width=900)
+
+    
+
+    st.dataframe(standings,
+                 column_config={
+                    "Logo": st.column_config.ImageColumn(
+                        label="Logo",width="medium",help=None
+                    ) 
+                 },
+                 height=560, width=970)
     
 if __name__ == "__main__":
     main()

@@ -29,12 +29,11 @@ def get_standings(seasons,conference)-> pd.DataFrame:
     data = response.text
     parse_json = json.loads(data)
 
-    print("Seasons:", seasons)
-    print("Conference:", conference)
+    
 
    
     # Initialize empty lists to store data
-    ids_list = []
+    # ids_list = []
     logo_list = []
     names_list = []
     ranks_list = []
@@ -42,7 +41,7 @@ def get_standings(seasons,conference)-> pd.DataFrame:
     losses_list = []
 
     for ids in range(min(15, len(parse_json['response']))):
-        ids_list.append(parse_json['response'][ids]['team']['id'])
+        # ids_list.append(parse_json['response'][ids]['team']['id'])
         logo_list.append(parse_json['response'][ids]['team']['logo'])
         names_list.append(parse_json['response'][ids]['team']['name'])
         ranks_list.append(parse_json['response'][ids]['conference']['rank'])
@@ -52,10 +51,10 @@ def get_standings(seasons,conference)-> pd.DataFrame:
   
     df = pd.DataFrame(
         {
-            "ID": ids_list,
-            # "Logo": st.data_editor(logo_list),
-            "Name": names_list,
+            # "ID": ids_list,
             "Rank": ranks_list,
+            "Logo": logo_list,
+            "Name": names_list,
             "Win": wins_list,
             "Loss": losses_list
         }
