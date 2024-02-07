@@ -13,7 +13,7 @@ headers = {
 }
 
 
-st.title('NBA :blue[Stats] :basketball:')
+
 
 
 
