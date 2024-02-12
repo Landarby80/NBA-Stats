@@ -1,12 +1,14 @@
 import streamlit as st
 
 from src.standings import get_standings
-
+from src.games import get_games
 
 
 
 #function to create the standing page
 def standings_page():
+
+    st.title("Standings")
 
     conference = st.sidebar.selectbox('Conference',
                                  ("East", "West"), 
@@ -25,9 +27,6 @@ def standings_page():
     st.write( conference, "in ", seasons)
     
     standings = get_standings(seasons, conference)
-
-
-    
 
     st.dataframe(standings,
                  column_config={
@@ -49,6 +48,11 @@ def howto_page():
         """
     )
 
+def games_page():
+      st.title("Live Games")
+
+      get_games()
+
 
 def welcome_page ():
     st.markdown(
@@ -64,7 +68,8 @@ def welcome_page ():
 )
     page = st.sidebar.selectbox(
                 'Select Page', ('default', 
-                                'Standings'
+                                'Standings',
+                                'Live Games'
                                 )
                 )
 
@@ -72,7 +77,9 @@ def welcome_page ():
     if page == 'default':
                 howto_page()
     elif page == 'Standings':
-                standings_page()    
+                standings_page()
+    elif page == 'Live Games':
+                games_page()    
 
 def main() -> None:
 
