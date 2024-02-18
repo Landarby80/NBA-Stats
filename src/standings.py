@@ -3,15 +3,16 @@ import requests
 import pandas as pd
 import streamlit as st
 
+from dotenv import dotenv_values
 
+secrets = dotenv_values(".env")
 
-url = "https://api-nba-v1.p.rapidapi.com/standings"
+url = secrets["STANDINGS_URL"]
 
 headers = {
-	"X-RapidAPI-Key": "566613b78fmsh13902d43bd1824fp1879e0jsna570c6257dac",
-	"X-RapidAPI-Host": "api-nba-v1.p.rapidapi.com"
+	"X-RapidAPI-Key": secrets["X-RapidAPI-Key"],
+	"X-RapidAPI-Host": secrets["X-RapidAPI-Host"],
 }
-
 
 
 

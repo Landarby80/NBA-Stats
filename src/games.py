@@ -3,12 +3,18 @@ import json
 import requests
 import streamlit as st
 
-url = "https://api-nba-v1.p.rapidapi.com/games"
+from dotenv import dotenv_values
+
+secrets = dotenv_values(".env")
+
+url = secrets["GAMES_URL"]
 
 headers = {
-	"X-RapidAPI-Key": "566613b78fmsh13902d43bd1824fp1879e0jsna570c6257dac",
-	"X-RapidAPI-Host": "api-nba-v1.p.rapidapi.com"
+	"X-RapidAPI-Key": secrets["X-RapidAPI-Key"],
+	"X-RapidAPI-Host": secrets["X-RapidAPI-Host"],
 }
+
+
 
         
 #function to get the games status                
@@ -36,13 +42,7 @@ def get_games():
     data = response.text
     parse_json = json.loads(data)
 
-    #Initiate empty list to store data
-    # visitor_list = []
-    # visitor_points = []
-    # home_list = []
-    # home_points = []
-    # status_list = []
-
+   
     #variable to get the number of games
     num_games = parse_json['results']
 
